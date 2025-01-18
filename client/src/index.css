@@ -1,0 +1,11 @@
+*,
+html,
+body {
+  background-color: white !important; 
+  color: black !important;
+}
+
+.box {
+  background-color: #f9fafb !important;
+ 
+}

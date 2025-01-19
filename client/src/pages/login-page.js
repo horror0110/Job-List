@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../lib/authentication";
 
 const LoginPage = ({ setLoggedUser }) => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
   const navigate = useNavigate();
@@ -11,12 +12,9 @@ const LoginPage = ({ setLoggedUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // const user = await login(email, password);
+    const user = await login(email, password);
 
-    const user = {
-      id: "321312331313131",
-      email: "Amaraa@gmail.com",
-    };
+    console.log(user);
 
     if (user) {
       setError(false);

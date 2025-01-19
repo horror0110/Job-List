@@ -9,6 +9,8 @@ const Navbar = ({ loggedUser, setLoggedUser }) => {
   const handleLogout = () => {
     setLoggedUser(null);
 
+    localStorage.removeItem("job_api_token");
+
     navigate("/login");
   };
   return (

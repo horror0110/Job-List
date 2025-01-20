@@ -13,6 +13,7 @@ const Navbar = ({ loggedUser, setLoggedUser }) => {
 
     navigate("/login");
   };
+
   return (
     <nav className="navbar">
       <div className="navbar-start">
@@ -25,7 +26,7 @@ const Navbar = ({ loggedUser, setLoggedUser }) => {
         {isLogged ? (
           <>
             <span className="navbar-item has-text-grey">
-              {loggedUser.email}
+              {loggedUser?.email}
             </span>
 
             <Link className="navbar-item  " to="/jobs/new">

@@ -33,7 +33,7 @@ const Navbar = ({ loggedUser, setLoggedUser }) => {
               Зар нэмэх
             </Link>
 
-            <a className="navbar-item" onClick={handleLogout}>
+            <a href="/" className="navbar-item" onClick={handleLogout}>
               Гарах
             </a>
           </>

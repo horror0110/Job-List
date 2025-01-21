@@ -1,17 +1,17 @@
 import { getCompanyById } from "./controllers/company.js";
-import { createJob, getJobById, getJobs, getJobsByCompanyId } from "./controllers/jobs.js";
+import {
+  createJob,
+  getJobById,
+  getJobs,
+  getJobsByCompanyId,
+} from "./controllers/jobs.js";
 
 export const resolvers = {
-
-
   Mutation: {
-
-    createJob: (root , {title , description})=> {
-
-      const companyId = "FjcJCHJALA4i"
-       return createJob(companyId , title , description)
-    }
-
+    createJob: (root, { input: { title, description } }) => {
+      const companyId = "FjcJCHJALA4i";
+      return createJob(companyId, title, description);
+    },
   },
 
   Query: {

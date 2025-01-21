@@ -12,8 +12,6 @@ export const createJob = async (companyId, title, description) => {
     createdAt: new Date().toISOString(),
   };
 
-  console.log(newJob);
-
   await knex.table("job").insert(newJob);
 
   return newJob;

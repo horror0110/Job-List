@@ -21,5 +21,6 @@ export const login = async (email, password) => {
   return {
     id: data.sub,
     email: data.name,
+    companyId: data.companyId,
   };
 };

@@ -1,9 +1,11 @@
 import { getCompanyById } from "./controllers/company.js";
 import {
   createJob,
+  deleteJob,
   getJobById,
   getJobs,
   getJobsByCompanyId,
+  updateJob,
 } from "./controllers/jobs.js";
 
 export const resolvers = {
@@ -12,6 +14,8 @@ export const resolvers = {
       const companyId = "FjcJCHJALA4i";
       return createJob(companyId, title, description);
     },
+    deleteJob: (root, { id }) => deleteJob(id),
+    updateJob: (root , {input: {id , title , description}})=> updateJob(id, title , description )
   },
 
   Query: {

@@ -12,7 +12,7 @@ export const handleLogin = async (req, res) => {
     return res.sendStatus(401);
   }
 
-  const data = { sub: user.id, name: user.email };
+  const data = { sub: user.id, name: user.email, companyId: user.companyId };
 
   const token = jwt.sign(data, secret);
 

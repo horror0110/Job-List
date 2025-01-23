@@ -17,6 +17,35 @@ export const createJob = async (companyId, title, description) => {
   return newJob;
 };
 
+export const deleteJob = async (id) => {
+  const job = await knex.table("job").first().where({ id });
+
+  if (!job) {
+    throw Error(`${id} тэй зар байхгүй`);
+  }
+  await knex.table("job").delete().where({ id });
+
+  return job;
+};
+
+export const updateJob = async (id, title, description) => {
+  const updatedJob = {
+    id,
+    title,
+    description,
+  };
+
+  const job = await knex.table("job").first().where({ id });
+
+  if (!job) {
+    throw Error(`${id} тэй зар байхгүй`);
+  }
+
+  await knex.table("job").update(updatedJob).where({ id });
+
+  return { ...job, ...updatedJob };
+};
+
 export const getJobsByCompanyId = async (companyId) => {
   return await knex.table("job").select().where({ companyId });
 };

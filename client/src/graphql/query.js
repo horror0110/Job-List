@@ -18,6 +18,42 @@ export const createJob = async (title, description) => {
   return job;
 };
 
+export const updateJob = async (id, title, description) => {
+  const mutation = gql`
+    mutation updateJob($input: UpdateJobInput) {
+      job: updateJob(input: $input) {
+        id
+        title
+        description
+      }
+    }
+  `;
+
+  const { job } = await client.request(mutation, {
+    input: { id, title, description },
+  });
+
+  return job;
+};
+
+export const deleteJob = async (id) => {
+  const mutation = gql`
+    mutation deleteJob($id: String!) {
+      job: deleteJob(id: $id) {
+        id
+        title
+        description
+      }
+    }
+  `;
+
+  const { job } = await client.request(mutation, {
+    id,
+  });
+
+  return job;
+};
+
 export const getJobById = async (id) => {
   const query = gql`
     query ($jobId: ID!) {

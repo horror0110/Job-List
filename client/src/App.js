@@ -6,6 +6,7 @@ import LoginPage from "./pages/login-page";
 import { useState } from "react";
 import Navbar from "./components/navbar";
 import CreateJobPage from "./pages/create-job-page";
+import EditJobPage from "./pages/edit-job-page";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState(null);
@@ -18,7 +19,9 @@ function App() {
 
           <Route path="/jobs/new" element={<CreateJobPage />}></Route>
 
-          <Route path="/jobs/:jobId" element={<JobPage />}></Route>
+          <Route path="/jobs/:jobId" element={<JobPage loggedUser={loggedUser}  />}></Route>
+
+          <Route path="/jobs/edit/:jobId" element={<EditJobPage loggedUser={loggedUser}  />}></Route>
 
           <Route path="/company/:companyId" element={<CompanyPage />}></Route>
 

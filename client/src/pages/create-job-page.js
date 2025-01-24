@@ -3,8 +3,8 @@ import { createJob } from "../graphql/query";
 import { useNavigate } from "react-router-dom";
 
 const CreateJobPage = () => {
-  const [title, setTitle] = useState(null);
-  const [description, setDescription] = useState(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const navigate = useNavigate();
 

@@ -1,6 +1,15 @@
 import { GraphQLClient, gql } from "graphql-request";
 
-const client = new GraphQLClient("http://localhost:9000/graphql");
+const client = new GraphQLClient("http://localhost:9000/graphql", {
+  headers: () => {
+    // get the authentication token from local storage if it exists
+    const token = localStorage.getItem("job_api_token");
+    if (token) {
+      return { Authorization: `Bearer ${token}` };
+    }
+    return {};
+  },
+});
 
 export const createJob = async (title, description) => {
   const mutation = gql`

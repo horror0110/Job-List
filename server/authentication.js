@@ -1,7 +1,14 @@
 import { getUserByEmail } from "./controllers/user.js";
 import jwt from "jsonwebtoken";
+import { expressjwt } from "express-jwt";
 
 const secret = "qwerytsdklfgmwsdk";
+
+export const authenticationMiddleware = expressjwt({
+  algorithms: ["HS256"],
+  secret,
+  credentialsRequired: false,
+});
 
 export const handleLogin = async (req, res) => {
   const { email, password } = req.body;

@@ -9,6 +9,8 @@ const HomePage = () => {
     getJobs().then((data) => setJobs(data));
   }, []);
 
+  if (jobs.length < 1) return <div>Одоогоор зар байхгүй</div>;
+
   return (
     <div className="">
       <h1 className="title">Ажлын зар</h1>

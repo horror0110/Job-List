@@ -1,3 +1,4 @@
+import { GraphQLError } from "graphql";
 import { getCompanyById } from "./controllers/company.js";
 import {
   createJob,
@@ -10,12 +11,18 @@ import {
 
 export const resolvers = {
   Mutation: {
-    createJob: (root, { input: { title, description } }) => {
-      const companyId = "FjcJCHJALA4i";
-      return createJob(companyId, title, description);
+    createJob: (root, { input: { title, description } }, { user }) => {
+      if (!user) {
+        throwUnauthenticated(
+          "Зарыг үүсгэхийн тулд та логин хийсэн байх хэрэгтэй"
+        );
+      }
+
+      return createJob(user.companyId, title, description);
     },
     deleteJob: (root, { id }) => deleteJob(id),
-    updateJob: (root , {input: {id , title , description}})=> updateJob(id, title , description )
+    updateJob: (root, { input: { id, title, description } }) =>
+      updateJob(id, title, description),
   },
 
   Query: {
@@ -30,4 +37,10 @@ export const resolvers = {
   Company: {
     jobs: (root) => getJobsByCompanyId(root.id),
   },
+};
+
+const throwUnauthenticated = (message) => {
+  throw new GraphQLError(message, {
+    extensions: { code: "UNAUTHENTICATED" },
+  });
 };
